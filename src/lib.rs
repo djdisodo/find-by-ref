@@ -1,4 +1,5 @@
 use std::mem::size_of;
+use static_assertions::_core::cmp::max;
 
 mod private {
 	pub trait Sealed {}
@@ -24,7 +25,7 @@ impl <T> FindByRef<T> for [T] {
 		if !self_memory_range.contains(&to_find_memory) {
 			None
 		} else {
-			Some((to_find_memory - self_memory_range.start) / size_of::<T>())
+			Some((to_find_memory - self_memory_range.start) / max(1, size_of::<T>()))
 		}
 	}
 }
