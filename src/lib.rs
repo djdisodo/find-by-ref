@@ -1,6 +1,8 @@
 use std::mem::size_of;
 
-trait FindByRef<T: Sized> {
+trait Sealed {}
+
+pub trait FindByRef<T: Sized>: Sealed {
 	fn find_by_ref(&self, to_find: &T) -> Option<usize>;
 }
 
